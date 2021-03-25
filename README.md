@@ -9,6 +9,7 @@ To find a linear relationship in your data you first need to know what that look
 Example:
 
 ![Linear relationship example](./images/linear-model.jpg)
+
 Figure 1: Example of a linear relationship [2]
 
 A linear model equation has the form y = mx + b. However, this doesn't mean you can only use it with one variable. More complex linear equations have the form y = m1x1 + m2x2 + ... + mnxn + b.
@@ -25,12 +26,14 @@ The mean squared error is calculated by getting the average of the difference be
 
 This sums up to the following equation:
 ![Mean squared error equation](./images/mean-squared-error-eq.png)
+
 Figure 2: Mean squared error equation [3]
 
 ### Updating parameters
 The parameters are updated one by one, but we don't rewrite the previous value of each parameter until we're done calculating the update for all of them. The update for each parameter is calculated as follows:
 
 ![Parameter update equation](./images/gd-eq.png)
+
 Figure 3: Parameter update equation [4]
 
 In this function theta represents the jth parameter (you have to apply the formula for each of them). Alpha is the learning rate or size of the step. m is the number of instances in your data. h(xi) is the hypothesis for the ith instance. yi is the y value for the ith instance. Finally, xi is the value of the jth column for the ith instance of your data.
