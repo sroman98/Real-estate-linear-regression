@@ -22,15 +22,17 @@ def gradient_descent_summatory(ys, hyps, xs):
 def gradient_descent(params, lr, ys, hyps, xmat):
     new_params = []
     m = len(ys)
-    for param, i in zip(params, range(m)):
-        res = param - (lr/m) * gradient_descent_summatory(ys, hyps, xmat.iloc[i])
+    cols = xmat.columns
+    for param, i in zip(params, range(len(params))):
+        res = param - (lr/m) * gradient_descent_summatory(ys, hyps, xmat[cols[i]])
         new_params.append(res)
     return new_params
 
 def calculate_hypotheses(params, xmat):
     hyps = []
     cols = len(xmat.columns)
-    for j in range(len(xmat)):
+    rows = len(xmat)
+    for j in range(rows):
         hyp = 0
         for i in range(cols):
             hyp += xmat.iloc[j, i] * params[i]
@@ -77,9 +79,9 @@ hyps = calculate_hypotheses(params,x_train)
 mse = mean_squared_error(y_train,hyps)
 
 # use gradient descent until 5000 epochs are reached or mse is 0
-while epoch < 1000 and mse > 0:
+while epoch < 3000 and mse > 0:
     old_params = params
-    params = gradient_descent(params, 0.05, y_train, hyps, x_train)
+    params = gradient_descent(params, 0.2, y_train, hyps, x_train)
     hyps = calculate_hypotheses(params,x_train)
     mse = mean_squared_error(y_train,hyps)
     epoch += 1
@@ -94,7 +96,7 @@ print("Epochs:")
 print(epoch)
 print("Parameters:")
 for i in range(len(params)):
-    print(x_train.columns[i] + ": " + str(params[i]))
+    print(x_train.columns[i] + ": %.4f" % params[i])
 
 test_hyps = calculate_hypotheses(params,x_test)
 print('Coefficient of determination: \n %.2f' % r2_score(y_test, test_hyps))
