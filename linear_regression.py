@@ -79,7 +79,7 @@ hyps = calculate_hypotheses(params,x_train)
 mse = mean_squared_error(y_train,hyps)
 
 # use gradient descent until 5000 epochs are reached or mse is 0
-while epoch < 3000 and mse > 0:
+while epoch < 1000 and mse > 0:
     old_params = params
     params = gradient_descent(params, 0.2, y_train, hyps, x_train)
     hyps = calculate_hypotheses(params,x_train)
